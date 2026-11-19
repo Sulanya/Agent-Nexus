@@ -22,10 +22,10 @@ AN 复用你自己安装和配置的编码 Agent。它不是独立模型服务�
 - 好的设计总是心有灵犀！
 
 效果如下：
-![Agent Nexus 手机端界面](docs/images/mobile.png)
+
 ![Agent Nexus 平板端界面](docs/images/tablet.png)
 ![Agent Nexus 电脑端界面](docs/images/desktop.png)
-
+![Agent Nexus 手机端界面](docs/images/mobile.png)
 
 更多界面截图请查看 **[电脑 / 平板 / 手机演示图](docs/images/README.md)**，图片集中放在 `docs/images/`。
 
