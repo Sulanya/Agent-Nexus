@@ -30,7 +30,19 @@ flowchart LR
 | ui/index.html | 浏览器交互、流式合并、移动布局、侧栏调宽 |
 | launcher/ | 可选桌面控制面板与图标生成源码 |
 
-## 关键约束
+## Agent 能力与边界
+
+README 的能力徽章对应以下源码能力，不代表独立的模型执行框架或三个引擎完全相同的实现。
+
+| 徽章 | 已实现能力 | 依赖与边界 |
+|---|---|---|
+| Tool Use / Native Agent Trace | 读取、展示工具调用、命令输出、执行结果和审批状态 | 工具执行由所接入的本机 Agent 完成，AN 提供远程控制和事件视图 |
+| Context / Budget Aware | 展示模型上下文窗口与预算元数据，支持预算错误提示 | 需配置 AN_CONTEXT_LIMITS 或可选 router 元数据；不承诺自动压缩全部历史或扩大模型窗口 |
+| Queue / Durable Submission | 稳定请求 ID、持久收据、原生队列和未知结果核对 | Codex 原生队列为主要路径；其他引擎有差异，不保证外部工具副作用严格 exactly-once |
+| Recovery / Event Replay | 事件序号恢复、增量重放、会话投影对账 | 保留窗口有界；超过窗口需读会话状态，不能无限保留所有增量 |
+| Workflow / Schedule & Handoff | 一次性定时执行、跨会话说明交接与任务状态事件 | 来源历史默认不复制；不是任意自主多 Agent 协作或无限循环任务 |
+
+## 关键约束与恢复
 
 ACK 只表示接收，不等于模型已开始或完成。结果未知必须按原 CID 查队列/事件，不换 ID 自动重发。设置与项目变更要读取持久状态确认。workflow 的 scheduled 行承担待执行 outbox，执行本身在数据库事务之外；崩溃恢复依赖稳定 CID 对账。
 

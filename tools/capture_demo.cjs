@@ -14,9 +14,10 @@ async function main(){
   function call(method,params={}){const id=++counter;return new Promise((resolve,reject)=>{pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});}
   async function evaluate(expression){const r=await call('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw new Error(JSON.stringify(r.exceptionDetails));return r.result.value;}
   await call('Page.enable');await call('Runtime.enable');
+  await call('Page.addScriptToEvaluateOnNewDocument',{source:"localStorage.setItem('an.sidebar.width','340');"});
   try{
-    for(const [name,width,height,mobile] of [['desktop',1440,960,false],['tablet',1024,1100,false],['mobile',430,932,true]]){
-      await call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile,screenWidth:width,screenHeight:height});
+    for(const [name,width,height,mobile] of [['desktop',1280,900,false],['tablet',1024,1000,false],['mobile',430,932,true]]){
+      await call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:2,mobile,screenWidth:width,screenHeight:height});
       await call('Page.navigate',{url:baseURL+'/?open=demo-0'});
       let state;
       for(let i=0;i<100;i++){
@@ -26,8 +27,10 @@ async function main(){
       if(state?.online!=='on'||!state.loaded)throw new Error(name+' did not reach a connected rendered conversation: '+JSON.stringify(state));
       await sleep(3400);
       await evaluate(`(()=>{const c=document.querySelector('#chatView');c.scrollTop=0;return true})()`);
-      state=await evaluate(`({online:document.querySelector('#conn')?.className,text:document.querySelector('#connTxt')?.textContent,bodyWidth:document.documentElement.clientWidth,overflow:document.documentElement.scrollWidth>innerWidth,brand:document.querySelector('#brand')?.className})`);
+      state=await evaluate(`({online:document.querySelector('#conn')?.className,text:document.querySelector('#connTxt')?.textContent,bodyWidth:document.documentElement.clientWidth,overflow:document.documentElement.scrollWidth>innerWidth,brand:document.querySelector('#brand')?.className,content:document.body.innerText})`);
       if(state.online!=='on'||state.overflow)throw new Error('Invalid screenshot state '+JSON.stringify(state));
+      if(/(?:36099|hermes-agent|trycloudflare|sk-[a-zA-Z0-9_-]{16,}|楚齐|艾比森|@[\w.-]+\.[a-z]{2,})/i.test(state.content))throw new Error('Private identifier found in screenshot DOM');
+      delete state.content;
       const capture=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:false,fromSurface:true});
       fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(capture.data,'base64'));
       console.log(name+' '+JSON.stringify(state));

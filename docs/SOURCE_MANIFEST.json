@@ -109,8 +109,8 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "97ad32311531aac8962f13b7b2cf9da0ccbb8bc410421846e04b65c03366eda8",
-      "bytes": 2166
+      "sha256": "495a45d23f8474f503120fd57938147fd5621c86cc73da820730ae3abd7c5bd4",
+      "bytes": 3389
     },
     {
       "path": "docs/BUILDING.md",
@@ -119,23 +119,33 @@
     },
     {
       "path": "docs/images/desktop.png",
-      "sha256": "0b2049867a787f769cb23f86e087af14783b6a9839fe0aa7834ff0f7d846d9b2",
-      "bytes": 223176
+      "sha256": "545424e7ad698580b5814b96f008b5d81f59861753cb64b9ea4c5bb02a9505c9",
+      "bytes": 867996
+    },
+    {
+      "path": "docs/images/logo.svg",
+      "sha256": "7725483461044557a6d80504705fc7f9251fabb0037b3524d73fc8411208999f",
+      "bytes": 3449
     },
     {
       "path": "docs/images/mobile.png",
-      "sha256": "bb49676e30925aa2a87a885ad368bb3bc29127bf6904f1b26b1bf3a6ab8b3034",
-      "bytes": 104826
+      "sha256": "cc527a2799e8577af72b428e5455bdba58f32eb9ea7ce59d646404d6e9d8d2fb",
+      "bytes": 418736
+    },
+    {
+      "path": "docs/images/overview.png",
+      "sha256": "3dfc65b43bdb871584b91b2788ec782254f1489866915e3ffec5e51ee3b1bb2a",
+      "bytes": 613054
     },
     {
       "path": "docs/images/README.md",
-      "sha256": "6bc5d6dbd2a6c5491ec7894f0a63da21bd71479708f2bfb8505fd8eda0eb7962",
-      "bytes": 1367
+      "sha256": "abf95c6c5fbecc6c3d2aa760003e3555fbe1a124c107e8fa381aaabe5f306d28",
+      "bytes": 2158
     },
     {
       "path": "docs/images/tablet.png",
-      "sha256": "e32d5d0c9afcc7b69faac8f6992d55dc39f4c9fe71bf9c1027c2b06623ed7653",
-      "bytes": 197677
+      "sha256": "d2d881d49f1a72d9dc95da94907eaaf096a8806ca3648929f029874a08d2a6cf",
+      "bytes": 815319
     },
     {
       "path": "docs/INSTALLATION.md",
@@ -151,6 +161,11 @@
       "path": "docs/PROJECT.md",
       "sha256": "879f831db6031d0cda2de521ef99118a992caf7a7d56c1ccd247e5a3ea0e2c7c",
       "bytes": 3181
+    },
+    {
+      "path": "docs/README_HEADER.md",
+      "sha256": "86382d898b4f0c6800cf58c91fcf817c11947cf1b1b40e2e887500743594f054",
+      "bytes": 2578
     },
     {
       "path": "docs/RELEASE_PREPARATION.md",
@@ -364,13 +379,13 @@
     },
     {
       "path": "README.en.md",
-      "sha256": "11b4c26130438374279d16c3584a3fb39451cb9a74727d45b128abda5116b6b6",
-      "bytes": 7365
+      "sha256": "5b2d78fde1f5cb786af035897e4492a09c5a5d8dd978618e7c238f4a99af8777",
+      "bytes": 9358
     },
     {
       "path": "README.md",
-      "sha256": "b8da25479d017ae0147cd3e1d569be76e33dd7a81ff37e3465b500c1744c4648",
-      "bytes": 11392
+      "sha256": "bf82b08de147f6263aed9358086a50c3b3a5f09a31c8b7cbf256118424c5e524",
+      "bytes": 13399
     },
     {
       "path": "requirements-desktop.txt",
@@ -439,8 +454,8 @@
     },
     {
       "path": "tools/audit_source.py",
-      "sha256": "01ffc0c8a1dbbc39520e024a4fdf2c9bcfcf6cd20840ca6a7177af6da219d1ea",
-      "bytes": 3086
+      "sha256": "f5fa03615481cddb9967b834853c723e4a2d7ce1b15688481071b1754bd2a7d3",
+      "bytes": 3113
     },
     {
       "path": "tools/build_source.py",
@@ -449,18 +464,28 @@
     },
     {
       "path": "tools/capture_demo.cjs",
-      "sha256": "5cae7937982423c1eb64c24d86f0ab1473f99ea8d671e46236a5559140aa02cc",
-      "bytes": 3143
+      "sha256": "5d918221cf8898da11bb5979a280df3e77c25db21581c2c814e76b24b06fef80",
+      "bytes": 3508
+    },
+    {
+      "path": "tools/compose_demo.py",
+      "sha256": "e966152a67e69454cae89e0302007140d3720076f3441d709420cd116bb16934",
+      "bytes": 2414
     },
     {
       "path": "tools/demo_backend.py",
-      "sha256": "898fda19248e16f640298f0610ef9190febc123fe07f4bf4ddb952a3ce6e8dab",
-      "bytes": 6993
+      "sha256": "3af287a17398bfa1e5ac9c01c39696c1180801c2f44dd6d6639b94db978c690c",
+      "bytes": 7989
     },
     {
       "path": "tools/dev.py",
       "sha256": "7526fcf8d41cd0b512b3b9bbe2f8aa2bd1e324d2f1ad2466bedc156d0259e402",
       "bytes": 9107
+    },
+    {
+      "path": "tools/export_brand.py",
+      "sha256": "8075c091ad7fde74b50b839285871d26accc1bdcd3854a66825a5c9960af6976",
+      "bytes": 2265
     },
     {
       "path": "tools/open-owner.py",
@@ -494,7 +519,7 @@
     },
     {
       "path": "VERSION",
-      "sha256": "25430415fcab16d695c819362cabf1558f7d4eaf66c878c03175e4b1011a89bf",
+      "sha256": "03830ba2ebca300a6accd72bfa0d6d4896b4449d2ebf710850f8d2df8cedfc54",
       "bytes": 15
     }
   ]

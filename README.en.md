@@ -1,5 +1,26 @@
 # Agent Nexus
 
+<p align="center">
+  <img src="docs/images/logo.svg" alt="Agent Nexus Logo" width="520">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-22c55e?style=flat-square" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&amp;logo=python&amp;logoColor=white" alt="Python 3.11">
+  <a href="docs/INSTALLATION.md"><img src="https://img.shields.io/badge/Deploy-Self--Hosted-8b5cf6?style=flat-square" alt="Self-hosted deployment"></a>
+  <a href="docs/images/README.md"><img src="https://img.shields.io/badge/Access-Mobile_Browser-06b6d4?style=flat-square" alt="Mobile browser access"></a>
+  <img src="https://img.shields.io/badge/Agents-Codex_%7C_Claude_Code_%7C_WorkBuddy-f97316?style=flat-square" alt="Codex, Claude Code and WorkBuddy adapters">
+  <a href="https://github.com/Sulanya/Agent-Nexus/stargazers"><img src="https://img.shields.io/github/stars/Sulanya/Agent-Nexus?style=flat-square&amp;logo=github&amp;label=Stars" alt="GitHub stars"></a>
+</p>
+
+<p align="center">
+  <a href="docs/ARCHITECTURE.md#agent-能力与边界"><img src="https://img.shields.io/badge/Tool_Use-Native_Agent_Trace-0ea5e9?style=flat-square" alt="Native agent tool execution traces"></a>
+  <a href="docs/ARCHITECTURE.md#agent-能力与边界"><img src="https://img.shields.io/badge/Context-Budget_Aware-a855f7?style=flat-square" alt="Context budget metadata support"></a>
+  <a href="docs/ARCHITECTURE.md"><img src="https://img.shields.io/badge/Queue-Durable_Submission-10b981?style=flat-square" alt="Durable submission and idempotent receipts"></a>
+  <a href="docs/ARCHITECTURE.md"><img src="https://img.shields.io/badge/Recovery-Event_Replay-14b8a6?style=flat-square" alt="Bounded event replay and session reconciliation"></a>
+  <a href="docs/API.md"><img src="https://img.shields.io/badge/Workflow-Schedule_%26_Handoff-f59e0b?style=flat-square" alt="One-shot schedules and explicit handoffs"></a>
+</p>
+
 **View and take over AI coding sessions on your computer from a browser on any mobile device, while keeping your existing working environment.**
 
 Agent Nexus is a self-hosted remote workspace for existing coding agents. Execution, files, tools and agent authentication remain on your computer. Phones, tablets and other mobile devices with modern JavaScript/WebSocket-capable browsers can act as clients.

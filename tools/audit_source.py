@@ -26,7 +26,7 @@ def main():
         files=[p for p in ROOT.rglob('*') if p.is_file() and not any(part in ('.git','.venv','venv','__pycache__','node_modules') for part in p.relative_to(ROOT).parts)]
     for path in files:
         rel=path.relative_to(ROOT).as_posix()
-        if rel in ('docs/images/desktop.png','docs/images/tablet.png','docs/images/mobile.png'):
+        if rel in ('docs/images/desktop.png','docs/images/tablet.png','docs/images/mobile.png','docs/images/overview.png'):
             data=subprocess.check_output(['git','show',':'+rel],cwd=ROOT) if args.staged else path.read_bytes()
             if not data.startswith(b'\x89PNG\r\n\x1a\n'):
                 findings.append({'path':rel,'rule':'invalid-demo-image'})

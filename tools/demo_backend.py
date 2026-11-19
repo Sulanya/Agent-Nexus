@@ -11,23 +11,27 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from urllib.parse import urlsplit
 
 ROOT=Path(__file__).resolve().parents[1]
-NOW=1805515200
+NOW=int(time.time())
 THREADS=[]
-for i,(name,pid) in enumerate([('完善首页响应式布局','website'),('修复导航与键盘操作','website'),
-                             ('整理安装说明','docs'),('检查导出流程','docs')]):
+for i,(name,pid) in enumerate([('完善移动端工具卡片','nexus'),('上下文预算与状态同步','nexus'),
+                             ('断线恢复与事件对账','nexus'),('检查任务队列幂等性','nexus'),
+                             ('设计首页响应式布局','web'),('修复侧栏键盘操作','web'),
+                             ('整理首次安装说明','docs'),('补充引擎接入文档','docs')]):
     THREADS.append(dict(id='demo-'+str(i),name=name,title=name,preview=name,engine='codex',
         cwd='/demo/'+pid,projectId=pid,projectGroupKey='project:'+pid,
-        projectName='示例 · '+('网站项目' if pid=='website' else '文档工具'),
+        projectName={'nexus':'Agent Nexus','web':'示例工作区','docs':'文档中心'}[pid],
         projectPath='/demo/'+pid,projectMembershipSource='desktop',
         updatedAt=NOW-i*1800,createdAt=NOW-86400,recencyAt=NOW-i*1800,
         model='demo-model',reasoningEffort='medium',writable=True,running=False,
         loaded=True,queueLen=0,archived=False,status={'type':'idle'}))
 TURNS=[{'id':'demo-turn','status':'completed','items':[
-    {'id':'u1','type':'userMessage','content':[{'type':'text','text':'帮我检查首页在电脑、平板和手机上的布局。保留现有设计，修复窄屏溢出，并说明改动。'}]},
-    {'id':'a1','type':'agentMessage','text':'我先检查页面布局和断点，再调整窄屏下的导航、卡片与操作区。'},
-    {'id':'c1','type':'commandExecution','command':'npm run build','status':'completed',
-     'exitCode':0,'durationMs':820,'aggregatedOutput':'✓ Build completed\n✓ Responsive layout checks passed'},
-    {'id':'a2','type':'agentMessage','text':'### 布局已调整\n\n这次修改沿用现有样式，主要处理了三个地方：\n\n- **电脑：** 保留双栏布局和完整操作区。\n- **平板：** 缩小侧栏，给正文留出阅读空间。\n- **手机：** 切换单栏，避免横向溢出。\n\n构建检查已通过，可以继续补充要求。\n\n> 演示数据：项目、对话与执行结果均为虚构。'}]}]
+    {'id':'u1','type':'userMessage','content':[{'type':'text','text':'把移动端工具卡片和会话状态接起来。保留桌面端的项目结构，断线回来后也能继续查看进度。'}]},
+    {'id':'a1','type':'agentMessage','text':'先检查工具事件、会话索引与恢复入口，再核对手机和平板的显示。\n\n> 以下为公开演示数据，不包含真实会话或执行结果。'},
+    {'id':'c1','type':'commandExecution','command':'python -m unittest discover -s tests -q','status':'completed',
+     'exitCode':0,'durationMs':1240,'aggregatedOutput':'PASS  tool events\nPASS  thread projection\nPASS  reconnect recovery'},
+    {'id':'c2','type':'commandExecution','command':'npm run check:layout','status':'completed',
+     'exitCode':0,'durationMs':820,'aggregatedOutput':'PASS  desktop\nPASS  tablet\nPASS  mobile'},
+    {'id':'a2','type':'agentMessage','text':'## 随时接手，继续推进\n\n工具输出、会话状态和项目目录已经连接到同一条工作链路。电脑继续执行，浏览器负责查看和控制。\n\n| 检查项 | 演示结果 |\n| --- | --- |\n| 工具调用 | 命令、输出与执行结果可追踪 |\n| 项目目录 | 桌面与浏览器使用相同归属 |\n| 断线恢复 | 根据事件序号恢复并核对会话 |\n\n### 本轮改动\n\n- **工具卡片**：按执行顺序展示命令与返回状态。\n- **上下文**：保留原会话继续工作，不额外复制整段历史。\n- **多端布局**：电脑双栏、平板可调侧栏、手机单栏。\n\n### 下一步\n\n可以补充要求、查看文件，或把同一任务交接给其他已有会话。\n\n`已保留项目结构` · `执行结果可追踪` · `支持恢复对账`'}]}]
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -55,7 +59,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_json(contract_document())
         if path=='/api/threads':
             projects=[{'id':pid,'name':name,'path':'/demo/'+pid,'roots':[{'path':'/demo/'+pid}],'position':i}
-                      for i,(pid,name) in enumerate([('website','示例 · 网站项目'),('docs','示例 · 文档工具')])]
+                      for i,(pid,name) in enumerate([('nexus','Agent Nexus'),('web','示例工作区'),('docs','文档中心')])]
             return self.send_json({'data':THREADS,'total':len(THREADS),'projects':projects,'stale':False,'catalogRevision':'demo'})
         if path.startswith('/api/threads/'):
             if path.endswith('/recovery'):return self.send_json({'items':[],'data':[]})
